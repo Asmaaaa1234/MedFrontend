@@ -34,7 +34,12 @@
         <ul class="metismenu list-unstyled navbar-nav" id="navbar-nav">
           @for(item of menuItems; track $index){
           @if(item.isTitle){
-          <li class="menu-title"><span data-key="t-menu">{{ item.label | translate }}</span></li>
+          <li class="menu-title">
+            <span data-key="t-menu">
+              @if(item.icon){<i class="{{ item.icon }} icon nav-icon"></i>}
+              {{ item.label | translate }}
+            </span>
+          </li>
           }@else {
           <li class="nav-item">
             @if(hasItems(item)){
@@ -51,6 +56,7 @@
                 <li class="nav-item">
                   @if(hasItems(subitem)){
                   <a class="nav-link" href="javascript:void(0);" [attr.data-parent]="subitem.parentId" data-bs-toggle="collapse" [attr.aria-expanded]="!subitem.isCollapsed" (click)="toggleItem(subitem)">
+                    @if(subitem.icon){<i class="{{ subitem.icon }} icon nav-icon"></i>}
                     {{ subitem.label | translate}}
                     @if(subitem.badge){<span class="badge badge-pill {{subitem.badge.variant}}">{{subitem.badge.text
                       | translate}}</span>}
@@ -62,6 +68,7 @@
                       <li class="nav-item">
                         @if(hasItems(subSubitem)){
                         <a class="nav-link" href="javascript:void(0);" [attr.data-parent]="subSubitem.parentId" data-bs-toggle="collapse" [attr.aria-expanded]="!subSubitem.isCollapsed" (click)="toggleItem(subSubitem)">
+                          @if(subSubitem.icon){<i class="{{ subSubitem.icon }} icon nav-icon"></i>}
                           {{ subSubitem.label | translate}}
                           @if(subSubitem.badge){<span class="badge badge-pill {{subSubitem.badge.variant}}">{{subSubitem.badge.text
                             | translate}}</span>}
@@ -81,6 +88,7 @@
                         </div>
                         }@else {
                         <a [routerLink]="subSubitem.link" class="nav-link" [attr.data-parent]="subSubitem.parentId" (click)="updateActive($event)">
+                          @if(subSubitem.icon){<i class="{{ subSubitem.icon }} icon nav-icon"></i>}
                           {{ subSubitem.label | translate}}
                           @if(subSubitem.badge){<span class="badge badge-pill {{subSubitem.badge.variant}}">{{subSubitem.badge.text
                             | translate}}</span>}
@@ -92,6 +100,7 @@
                   </div>
                   }@else {
                   <a [routerLink]="subitem.link" class="nav-link" [attr.data-parent]="subitem.parentId" (click)="updateActive($event)">
+                    @if(subitem.icon){<i class="{{ subitem.icon }} icon nav-icon"></i>}
                     {{ subitem.label | translate}}
                     @if(subitem.badge){<span class="badge badge-pill {{subitem.badge.variant}}">{{subitem.badge.text
                       | translate}}</span>}
@@ -120,7 +129,7 @@
 
   <div class="doctor-sidebar-logout sidebar-logout flex-shrink-0 border-top border-top-dashed px-3">
     <a href="javascript:void(0);" class="nav-link text-body d-flex align-items-center mb-0" (click)="logout()">
-      <i class="ri-logout-circle-r-line fs-18 me-2"></i>
+      <i class="ri-logout-box-r-line fs-18 me-2"></i>
       <span>Logout</span>
     </a>
   </div>
