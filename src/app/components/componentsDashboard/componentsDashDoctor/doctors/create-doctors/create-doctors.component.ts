@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-export interface AppointmentRow {
-  doctor: string;
-  avatar: string;
-  date: string;
-  email: string;
-  status: 'Active' | 'Pending';
-  price: string;
+export type AgendaStatus = 'Confirmed' | 'Pending' | 'Cancelled';
+
+export type StatNavKey = 'appointments' | 'patients' | 'revenue' | 'satisfaction';
+
+export interface AgendaItem {
+  id: string;
+  patientId: string;
+  time: string;
+  patientName: string;
+  type: string;
+  status: AgendaStatus;
+}
+
+export interface RecentPatient {
+  id: string;
+  initials: string;
+  name: string;
+  condition: string;
+  avatarClass: string;
 }
 
 @Component({
@@ -16,118 +29,185 @@ export interface AppointmentRow {
   styleUrl: './create-doctors.component.scss',
 })
 export class CreateDoctorsComponent {
-  readonly statCards = [
+  constructor(private router: Router) {}
+
+  readonly statCards: Array<{
+    navKey: StatNavKey;
+    title: string;
+    value: string;
+    trend: string;
+    trendLabel: string;
+    icon: string;
+    iconWrapClass: string;
+    iconColorClass: string;
+  }> = [
     {
-      title: 'Total Patient',
-      value: '24,839',
-      delta: '+7.8% then last week',
-      variant: 'primary' as const,
-      icon: 'ri-group-line',
-      iconBg: 'bg-white bg-opacity-25',
+      navKey: 'appointments',
+      title: "Today's Appointments",
+      value: '24',
+      trend: '+12%',
+      trendLabel: 'vs last week',
+      icon: 'ri-calendar-check-line',
+      iconWrapClass: 'doctor-stat-icon-wrap--blue',
+      iconColorClass: 'doctor-stat-icon--blue',
     },
     {
-      title: 'Total Report',
-      value: '245',
-      delta: '+7.8% then last week',
-      variant: 'light' as const,
-      icon: 'ri-file-list-3-line',
-      iconBg: 'bg-warning-subtle text-warning',
+      navKey: 'patients',
+      title: 'Total Patients',
+      value: '1,248',
+      trend: '+5%',
+      trendLabel: 'vs last week',
+      icon: 'ri-team-line',
+      iconWrapClass: 'doctor-stat-icon-wrap--teal',
+      iconColorClass: 'doctor-stat-icon--teal',
     },
     {
-      title: 'Total Earning',
-      value: '92,372',
-      delta: '+7.8% then last week',
-      variant: 'light' as const,
+      navKey: 'revenue',
+      title: 'Revenue',
+      value: '$48,920',
+      trend: '+8%',
+      trendLabel: 'vs last month',
       icon: 'ri-money-dollar-circle-line',
-      iconBg: 'bg-danger-subtle text-danger',
+      iconWrapClass: 'doctor-stat-icon-wrap--amber',
+      iconColorClass: 'doctor-stat-icon--amber',
     },
     {
-      title: 'Total Appointment',
-      value: '879',
-      delta: '+7.8% then last week',
-      variant: 'light' as const,
-      icon: 'ri-calendar-event-line',
-      iconBg: 'bg-primary-subtle text-primary',
+      navKey: 'satisfaction',
+      title: 'Satisfaction',
+      value: '4.9/5',
+      trend: '+0.2',
+      trendLabel: 'vs last month',
+      icon: 'ri-emotion-happy-line',
+      iconWrapClass: 'doctor-stat-icon-wrap--violet',
+      iconColorClass: 'doctor-stat-icon--violet',
     },
   ];
 
-  appointments: AppointmentRow[] = [
+  readonly agendaItems: AgendaItem[] = [
     {
-      doctor: 'Dr. Sarah Johnson',
-      avatar: 'assets/images/users/avatar-2.jpg',
-      date: 'Mar 28, 2026',
-      email: 'sarah.j@clinic.com',
-      status: 'Active',
-      price: '$120',
+      id: 'apt-1',
+      patientId: 'pat-1',
+      time: '09:00 AM',
+      patientName: 'John Smith',
+      type: 'Follow-up',
+      status: 'Confirmed',
     },
     {
-      doctor: 'Dr. Michael Lee',
-      avatar: 'assets/images/users/avatar-3.jpg',
-      date: 'Mar 27, 2026',
-      email: 'm.lee@clinic.com',
+      id: 'apt-2',
+      patientId: 'pat-2',
+      time: '10:30 AM',
+      patientName: 'Maria Garcia',
+      type: 'Consultation',
       status: 'Pending',
-      price: '$85',
     },
     {
-      doctor: 'Dr. Emma Wilson',
-      avatar: 'assets/images/users/avatar-5.jpg',
-      date: 'Mar 26, 2026',
-      email: 'e.wilson@clinic.com',
-      status: 'Active',
-      price: '$200',
+      id: 'apt-3',
+      patientId: 'pat-3',
+      time: '02:00 PM',
+      patientName: 'David Chen',
+      type: 'Check-up',
+      status: 'Cancelled',
+    },
+    {
+      id: 'apt-4',
+      patientId: 'pat-4',
+      time: '03:30 PM',
+      patientName: 'Emma Wilson',
+      type: 'Follow-up',
+      status: 'Confirmed',
+    },
+    {
+      id: 'apt-5',
+      patientId: 'pat-5',
+      time: '04:45 PM',
+      patientName: 'James Brown',
+      type: 'Consultation',
+      status: 'Pending',
     },
   ];
 
-  // Apex line chart config (ng-apexcharts)
-  patientStatsChart: any = {
-    series: [
-      {
-        name: 'Patient statistics',
-        data: [42000, 55000, 78000, 120000, 95000, 140000, 82873],
-      },
-    ],
-    chart: {
-      type: 'line',
-      height: 320,
-      toolbar: { show: false },
-      zoom: { enabled: false },
-      fontFamily: 'inherit',
+  readonly recentPatients: RecentPatient[] = [
+    {
+      id: 'rp-1',
+      initials: 'JD',
+      name: 'John Doe',
+      condition: 'Hypertension',
+      avatarClass: 'doctor-avatar--blue',
     },
-    colors: ['#405189'],
-    stroke: {
-      curve: 'smooth',
-      width: 3,
+    {
+      id: 'rp-2',
+      initials: 'SK',
+      name: 'Sarah Kim',
+      condition: 'Type 2 Diabetes',
+      avatarClass: 'doctor-avatar--teal',
     },
-    dataLabels: { enabled: false },
-    grid: {
-      borderColor: '#eef0f7',
-      strokeDashArray: 4,
-      padding: { left: 8, right: 8 },
+    {
+      id: 'rp-3',
+      initials: 'MR',
+      name: 'Mike Ross',
+      condition: 'Annual physical',
+      avatarClass: 'doctor-avatar--amber',
     },
-    xaxis: {
-      categories: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-      axisBorder: { show: false },
-      axisTicks: { show: false },
-      labels: { style: { colors: '#878a99' } },
+    {
+      id: 'rp-4',
+      initials: 'LW',
+      name: 'Lisa Wong',
+      condition: 'Post-op follow-up',
+      avatarClass: 'doctor-avatar--rose',
     },
-    yaxis: {
-      min: 0,
-      max: 200000,
-      tickAmount: 5,
-      labels: {
-        style: { colors: '#878a99' },
-        formatter: (val: number) => {
-          if (val >= 1000) {
-            return `${Math.round(val / 1000)}K`;
-          }
-          return `${val}`;
-        },
-      },
-    },
-    tooltip: {
-      y: {
-        formatter: (val: number) => `$${val.toLocaleString()}`,
-      },
-    },
-  };
+  ];
+
+  /** Doctor area: `/doctor/rendez-vous` */
+  navigateStat(key: StatNavKey): void {
+    switch (key) {
+      case 'appointments':
+        this.router.navigate(['/doctor', 'rendez-vous']);
+        break;
+      case 'patients':
+        this.router.navigate(['/doctor', 'patients']);
+        break;
+      case 'revenue':
+        this.router.navigate(['/doctor', 'facturation']);
+        break;
+      case 'satisfaction':
+        this.router.navigate(['/doctor', 'reclamations', 'view', '1']);
+        break;
+    }
+  }
+
+  /** No `/doctor/.../appointments/:id` route in project — intentional no-op */
+  onAgendaRowClick(_item: AgendaItem): void {}
+
+  /** No `/doctor/patients/:id` route — intentional no-op */
+  onAgendaPatientNameClick(event: Event, _item: AgendaItem): void {
+    event.stopPropagation();
+  }
+
+  navigateWeekView(): void {
+    this.router.navigate(['/doctor', 'agenda']);
+  }
+
+  navigateAddAppointment(): void {
+    this.router.navigate(['/doctor', 'agenda']);
+  }
+
+  navigateAiAssistance(): void {
+    this.router.navigate(['/doctor', 'ia-assistance']);
+  }
+
+  /** No `/doctor/patients/:id` — intentional no-op */
+  onRecentPatientClick(_p: RecentPatient): void {}
+
+  navigateTeleconsultation(): void {
+    this.router.navigate(['/doctor', 'teleconsultation']);
+  }
+
+  navigateRendezVous(): void {
+    this.router.navigate(['/doctor', 'rendez-vous']);
+  }
+
+  /** No dedicated "more" route */
+  onAgendaMoreClick(event: Event): void {
+    event.stopPropagation();
+  }
 }
