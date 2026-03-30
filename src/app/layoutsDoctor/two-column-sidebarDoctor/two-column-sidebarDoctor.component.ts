@@ -1,24 +1,34 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { MENU } from './menu';
+import { MENU } from '../sidebarDoctor/menu';
 import { MenuItem } from './menu.model';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
     selector: 'app-two-column-sidebar-doctor',
     templateUrl: './two-column-sidebarDoctor.component.html',
+    styleUrl: './two-column-sidebarDoctor.component.scss',
     standalone: false
 })
-export class TwoColumnSidebarDoctorComponent implements OnInit {
+export class TwoColumnSidebarDoctorComponent implements OnInit, AfterViewInit {
   menu: any;
   toggle: any = true;
   menuItems: MenuItem[] = [];
-  @ViewChild('sideMenu') sideMenu!: ElementRef;
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
-  constructor(private router: Router, public translate: TranslateService) {
+  constructor(
+    private router: Router,
+    public translate: TranslateService,
+    private authService: AuthenticationService
+  ) {
     translate.setDefaultLang('en');
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
   }
 
   ngOnInit(): void {

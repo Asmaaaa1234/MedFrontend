@@ -26,6 +26,91 @@ import { RouterModule, Routes } from '@angular/router';
 // import { PagesRoutingModule } from "./pages-routing.module";
  const routes: Routes = [
   {
+        path: '',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'patients',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'medecins',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'personnel',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'rendez-vous',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'dossier-medical',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'facturation',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'paiements',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'teleconsultation',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'messagerie',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'documents',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'ia-assistance',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'ia-ocr',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'reporting',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'securite',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'audit',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'parametres',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
         path: 'reclamations',
         //component: AdduserComponent,
         loadChildren: () => import('./reclamations/reclamations.module').then(m => m.ReclamationsModule),

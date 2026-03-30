@@ -1,9 +1,6 @@
 <div id="layout-wrapper" (window:resize)="onResize($event)">
-    <!-- Top Bar 
-    <app-topbar (mobileMenuButtonClicked)="onToggleMobileMenu()"></app-topbar>-->
-    <!-- Side Bar -->
-    <!-- <app-sidebar></app-sidebar> -->
-     <app-sidebar-doctor></app-sidebar-doctor>
+    <app-topbar-patient (mobileMenuButtonClicked)="onToggleMobileMenu()"></app-topbar-patient>
+    <app-sidebar-doctor></app-sidebar-doctor>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">

@@ -1,7 +1,7 @@
 <!-- ========== App Menu ========== -->
-<div class="app-menu navbar-menu">
+<div class="app-menu navbar-menu doctor-sidebar-shell d-flex flex-column">
   <!-- LOGO -->
-  <div class="navbar-brand-box">
+  <div class="navbar-brand-box flex-shrink-0">
     <!-- Dark Logo-->
     <a routerLink="/" class="logo logo-dark">
       <span class="logo-sm">
@@ -25,7 +25,7 @@
     </button>
   </div>
 
-  <div id="scrollbar">
+  <div id="scrollbar" class="doctor-sidebar-scroll flex-grow-1 d-flex flex-column doctor-min-h-0">
     <div class="container-fluid">
       <div id="two-column-menu">
         <ul class="twocolumn-iconview" data-simplebar="init">
@@ -42,12 +42,12 @@
                     <li>
                       @if(hasItems(item)){
                       <a href="javascript:void(0);" [attr.subitems]="item.collapseid" class="nav-icon" (click)="toggleItem($event)">
-                        <i class="{{ item.icon }}" class=""></i>
+                        <i class="{{ item.icon }}"></i>
                         <span data-key="t-dashboards" class="d-none">{{item.label | translate}}</span>
                       </a>
                       }@else {
                       <a [routerLink]="item.link" [attr.subitems]="item.collapseid" class="nav-icon" (click)="toggleParentItem($event)">
-                        <i class="{{ item.icon }}" class=""></i>
+                        <i class="{{ item.icon }}"></i>
                         <span data-key="t-widget" class="d-none">{{item.label | translate}}</span>
                       </a>
                       }
@@ -73,9 +73,10 @@
                 <div class="simplebar-content" style="padding: 0px;">
                   <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                   @for(item of menuItems; track $index){
+                  @if(!item.isTitle){
                   <li class="nav-item">
                     <ng-container>
-                      <div class="collapse menu-dropdown" id="{{item.collapseid}}" [attr.data-name]="item.label | translate" aria-expanded="true">
+                      <div class="collapse menu-dropdown" [attr.id]="item.collapseid || ('doctor-menu-' + item.id)" [attr.data-name]="item.label | translate" aria-expanded="true">
                         @if(hasItems(item)){
                         <ul class="nav nav-sm flex-column" aria-expanded="false">
                           @for(subitem of item.subItems; track $index){
@@ -130,10 +131,17 @@
                           </li>
                           }
                         </ul>
+                        } @else if (item.link) {
+                        <ul class="nav nav-sm flex-column" aria-expanded="false">
+                          <li class="nav-item">
+                            <a [routerLink]="item.link" class="nav-link" (click)="updateActive($event)">{{ item.label | translate }}</a>
+                          </li>
+                        </ul>
                         }
                       </div>
                     </ng-container>
                   </li> <!-- end Dashboard Menu -->
+                  }
                   }
                 </div>
               </ngx-simplebar>
@@ -144,6 +152,12 @@
       </ul>
     </div>
     <!-- Sidebar -->
+  </div>
+  <div class="doctor-sidebar-logout sidebar-logout flex-shrink-0 border-top border-top-dashed px-3 mt-auto">
+    <a href="javascript:void(0);" class="nav-link text-body d-flex align-items-center mb-0" (click)="logout()">
+      <i class="ri-logout-circle-r-line fs-18 me-2"></i>
+      <span>Logout</span>
+    </a>
   </div>
   <div class="sidebar-background"></div>
 </div>

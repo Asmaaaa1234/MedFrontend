@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-// Menu Pachage
+// Menu package
 // import MetisMenu from 'metismenujs';
 
 import { MENU } from './menu';

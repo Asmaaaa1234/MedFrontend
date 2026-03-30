@@ -1,0 +1,23 @@
+.doctor-min-h-0 {
+  min-height: 0;
+}
+
+/* Aligné sur sidebar médecin vertical : logout en bas */
+.doctor-sidebar-shell {
+  min-height: 100vh;
+}
+
+.doctor-sidebar-scroll {
+  min-height: 0;
+}
+
+.doctor-sidebar-logout {
+  padding-top: 1rem;
+  padding-bottom: 1.75rem;
+
+  .nav-link {
+    border-radius: 0.5rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+}

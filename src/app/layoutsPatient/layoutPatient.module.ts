@@ -43,10 +43,10 @@ import { VerticalPatientComponent } from './verticalPatient/verticalPatient.comp
     FormsModule, ReactiveFormsModule
   ],
   exports: [
-    // Exportez le composant TopbarComponent si nécessaire
     HorizontalPatientComponent,
     HorizontalTopbarPatientComponent,
     FooterPatientComponent,
+    TopbarPatientComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

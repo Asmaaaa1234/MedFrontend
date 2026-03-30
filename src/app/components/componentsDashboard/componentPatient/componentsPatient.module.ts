@@ -29,9 +29,74 @@ import { RouterModule, Routes } from '@angular/router';
 // import { PagesRoutingModule } from "./pages-routing.module";
 const routes: Routes = [
   {
+        path: '',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
         path: 'patients',
         //component: AddPatientComponent,
         loadChildren: () => import('../componentPatient/crudPatients/crudPatients.module').then(m => m.CrudPatientsModule),
+  },
+  {
+        path: 'rendez-vous',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'dossier-medical',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'notifications',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'teleconsultation',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'messagerie',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'factures',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'paiements',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'documents',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'suivi-sante',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'ia-assistant',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'consentement',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'parametres',
+        redirectTo: 'patients/add',
+        pathMatch: 'full'
   }
 ]
 @NgModule({

@@ -27,9 +27,64 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+        path: '',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
         path: 'reclamations',
         //component: AdduserComponent,
         loadChildren: () => import('../commonComponentsDash/reclamations/reclamations.module').then(m => m.ReclamationsModule),
+  },
+  {
+        path: 'rendez-vous',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'patients',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'agenda',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'dossiers',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'documents',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'facturation',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'paiements',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
+  },
+  {
+        path: 'notifications',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'support',
+        redirectTo: 'reclamations/add',
+        pathMatch: 'full'
+  },
+  {
+        path: 'parametres',
+        redirectTo: 'reclamations/view/1',
+        pathMatch: 'full'
   },
   // {
   //     path: '',

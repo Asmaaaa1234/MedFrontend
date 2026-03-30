@@ -1,1 +1,125 @@
-<p>create-doctors works!</p>
+<div class="doctor-overview">
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+    <h4 class="mb-0 fw-semibold">Overview</h4>
+  </div>
+
+  <div class="row g-3 mb-4">
+    @for (card of statCards; track card.title) {
+      <div class="col-xl-3 col-md-6">
+        <div
+          class="card border-0 shadow-sm h-100 doctor-stat-card"
+          [ngClass]="card.variant === 'primary' ? 'bg-primary text-white' : 'bg-white'"
+        >
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <p class="text-uppercase fs-12 mb-1 opacity-75" [class.text-white-50]="card.variant === 'primary'" [class.text-muted]="card.variant !== 'primary'">
+                  {{ card.title }}
+                </p>
+                <h3 class="mb-2 fw-semibold">{{ card.value }}</h3>
+                <span class="fs-12" [class.text-white-50]="card.variant === 'primary'" [class.text-success]="card.variant !== 'primary'">
+                  {{ card.delta }}
+                </span>
+              </div>
+              <div class="avatar-sm flex-shrink-0">
+                <span
+                  class="avatar-title rounded-circle fs-20 d-flex align-items-center justify-content-center"
+                  [ngClass]="card.variant === 'primary' ? card.iconBg : card.iconBg + ' text-body'"
+                >
+                  <i [class]="card.icon"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="row g-3">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header border-0 bg-transparent d-flex align-items-center justify-content-between py-3">
+          <h5 class="card-title mb-0">Patient statistics</h5>
+          <button type="button" class="btn btn-soft-secondary btn-sm">
+            <i class="ri-filter-3-line align-middle me-1"></i> Filter
+          </button>
+        </div>
+        <div class="card-body pt-0">
+          <apx-chart
+            [series]="patientStatsChart.series"
+            [chart]="patientStatsChart.chart"
+            [colors]="patientStatsChart.colors"
+            [stroke]="patientStatsChart.stroke"
+            [dataLabels]="patientStatsChart.dataLabels"
+            [tooltip]="patientStatsChart.tooltip"
+            [grid]="patientStatsChart.grid"
+            [xaxis]="patientStatsChart.xaxis"
+            [yaxis]="patientStatsChart.yaxis"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header border-0 bg-transparent d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+          <h5 class="card-title mb-0">Appointments</h5>
+          <div class="app-search-sm position-relative">
+            <input type="text" class="form-control form-control-sm ps-4" placeholder="Search..." />
+            <i class="ri-search-line search-widget-icon"></i>
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" style="width: 40px">
+                    <input class="form-check-input" type="checkbox" />
+                  </th>
+                  <th>Doctor</th>
+                  <th>Date</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Price</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of appointments; track row.email) {
+                  <tr>
+                    <td>
+                      <input class="form-check-input" type="checkbox" />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img [src]="row.avatar" class="avatar-xs rounded-circle" alt="" />
+                        <span class="fw-medium">{{ row.doctor }}</span>
+                      </div>
+                    </td>
+                    <td>{{ row.date }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>
+                      @if (row.status === 'Active') {
+                        <span class="badge bg-primary-subtle text-primary">Active</span>
+                      } @else {
+                        <span class="badge bg-danger-subtle text-danger">Pending</span>
+                      }
+                    </td>
+                    <td>{{ row.price }}</td>
+                    <td class="text-end">
+                      <button type="button" class="btn btn-sm btn-ghost-secondary btn-icon">
+                        <i class="ri-more-2-fill"></i>
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
