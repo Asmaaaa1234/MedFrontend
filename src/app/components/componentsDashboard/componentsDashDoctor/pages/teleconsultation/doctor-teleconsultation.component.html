@@ -1,1 +1,29 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Teleconsultation'"
+  [subtitle]="'Secure remote consultations with queued sessions.'"
+  [secondaryMetrics]="[
+    { label: 'Sessions today', value: '7' },
+    { label: 'Average duration', value: '22m' },
+    { label: 'Follow-up needed', value: '3' },
+    { label: 'Missed calls', value: '1' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary">Open virtual room</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="list-group">
+        <div class="list-group-item" *ngFor="let item of queue">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-1">{{ item.patient }} - {{ item.time }}</h6>
+              <small class="text-muted">{{ item.reason }}</small>
+            </div>
+            <button class="btn btn-sm btn-primary">Start call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

@@ -22,6 +22,13 @@ export interface RecentPatient {
   avatarClass: string;
 }
 
+interface PerformanceMetric {
+  consultations: string;
+  revenus: string;
+  dossiers: string;
+  noShow: string;
+}
+
 @Component({
   selector: 'app-create-doctors',
   standalone: false,
@@ -156,6 +163,46 @@ export class CreateDoctorsComponent {
       avatarClass: 'doctor-avatar--rose',
     },
   ];
+
+  readonly activities = [
+    { title: 'Consultation completed: John Smith', time: '10:14 Today' },
+    { title: 'Medical file updated: Sarah Kim', time: '09:47 Today' },
+    { title: 'Invoice payment received #INV-2026-002', time: 'Yesterday 18:20' },
+    { title: 'Reminder sent: Emma Wilson', time: 'Yesterday 16:05' },
+  ];
+
+  readonly categories = [
+    { name: 'General medicine', count: '(1,294)' },
+    { name: 'Cardiology', count: '(826)' },
+    { name: 'Pediatrics', count: '(479)' },
+    { name: 'Dermatology', count: '(275)' },
+    { name: 'Neurology', count: '(150)' },
+  ];
+
+  readonly reviewStats = [
+    { star: 5, percent: 50, count: 2758 },
+    { star: 4, percent: 29, count: 1063 },
+    { star: 3, percent: 18, count: 997 },
+    { star: 2, percent: 5, count: 227 },
+    { star: 1, percent: 8, count: 408 },
+  ];
+
+  selectedPeriod: 'ALL' | '1M' | '6M' | '1Y' = '1Y';
+  readonly periods: Array<'ALL' | '1M' | '6M' | '1Y'> = ['ALL', '1M', '6M', '1Y'];
+  readonly summaryByPeriod: Record<'ALL' | '1M' | '6M' | '1Y', PerformanceMetric> = {
+    ALL: { consultations: '3,251', revenus: '$10.45k', dossiers: '152', noShow: '14.12%' },
+    '1M': { consultations: '265', revenus: '$1.82k', dossiers: '34', noShow: '10.08%' },
+    '6M': { consultations: '1,986', revenus: '$8.11k', dossiers: '111', noShow: '13.74%' },
+    '1Y': { consultations: '7,585', revenus: '$22.89k', dossiers: '367', noShow: '18.92%' },
+  };
+
+  setPeriod(period: 'ALL' | '1M' | '6M' | '1Y'): void {
+    this.selectedPeriod = period;
+  }
+
+  get currentMetrics(): PerformanceMetric {
+    return this.summaryByPeriod[this.selectedPeriod];
+  }
 
   /** Doctor area: `/doctor/rendez-vous` */
   navigateStat(key: StatNavKey): void {

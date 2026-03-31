@@ -1,1 +1,43 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Settings'"
+  [subtitle]="'Cabinet preferences, language and notification options.'"
+  [secondaryMetrics]="[
+    { label: 'Users with access', value: '12' },
+    { label: 'Security level', value: 'Standard' },
+    { label: 'Backups this week', value: '7' },
+    { label: 'Audit events', value: '23' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary">View audit log</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Language</label>
+        <select class="form-select" [(ngModel)]="settings.language">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="ar">Arabic</option>
+        </select>
+      </div>
+      <div class="col-md-8 d-flex flex-wrap align-items-end gap-4">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="settings.darkMode" id="darkMode" />
+          <label class="form-check-label" for="darkMode">Dark mode</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="settings.emailNotifications" id="emailNotif" />
+          <label class="form-check-label" for="emailNotif">Email notifications</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="settings.whatsappReminders" id="waNotif" />
+          <label class="form-check-label" for="waNotif">WhatsApp reminders</label>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-white d-flex justify-content-end">
+      <button class="btn btn-primary">Save settings</button>
+    </div>
+  </div>
+</app-dashboard-shell>

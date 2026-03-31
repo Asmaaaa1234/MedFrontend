@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './doctor-ordonnances.component.html',
   standalone: false,
 })
-export class DoctorOrdonnancesComponent {}
+export class DoctorOrdonnancesComponent {
+  prescriptions = [
+    { patient: 'John Smith', medication: 'Amlodipine 5mg', duration: '30 days' },
+    { patient: 'Maria Garcia', medication: 'Metformin 500mg', duration: '90 days' },
+  ];
+}

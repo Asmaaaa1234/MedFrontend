@@ -23,6 +23,9 @@ import lottie from 'lottie-web';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DoctorPatientsComponent } from './pages/patients/doctor-patients.component';
+import { DoctorPatientsAddComponent } from './pages/patients-add/doctor-patients-add.component';
+import { DoctorPatientsEditComponent } from './pages/patients-edit/doctor-patients-edit.component';
+import { DoctorPatientsRecordComponent } from './pages/patients-record/doctor-patients-record.component';
 import { DoctorRendezVousComponent } from './pages/rendez-vous/doctor-rendez-vous.component';
 import { DoctorAgendaComponent } from './pages/agenda/doctor-agenda.component';
 import { DoctorDossierMedicalComponent } from './pages/dossier-medical/doctor-dossier-medical.component';
@@ -36,6 +39,7 @@ import { DoctorIaAssistanceComponent } from './pages/ia-assistance/doctor-ia-ass
 import { DoctorIaPlanningComponent } from './pages/ia-planning/doctor-ia-planning.component';
 import { DoctorReportingComponent } from './pages/reporting/doctor-reporting.component';
 import { DoctorParametresComponent } from './pages/parametres/doctor-parametres.component';
+import { CommonComponentsDashModule } from '../commonComponentsDash/common-components-dash.module';
 
 /**
  * Routage du dashboard médecin (préfixe parent : `/doctor` dans `app-routing.module.ts`).
@@ -62,6 +66,9 @@ const routes: Routes = [
   },
 
   { path: 'patients', component: DoctorPatientsComponent },
+  { path: 'patients/add', component: DoctorPatientsAddComponent },
+  { path: 'patients/edit', component: DoctorPatientsEditComponent },
+  { path: 'patients/create-record', component: DoctorPatientsRecordComponent },
   { path: 'rendez-vous', component: DoctorRendezVousComponent },
   { path: 'agenda', component: DoctorAgendaComponent },
   { path: 'dossier-medical', component: DoctorDossierMedicalComponent },
@@ -81,6 +88,9 @@ const routes: Routes = [
 
 const doctorPageDeclarations = [
   DoctorPatientsComponent,
+  DoctorPatientsAddComponent,
+  DoctorPatientsEditComponent,
+  DoctorPatientsRecordComponent,
   DoctorRendezVousComponent,
   DoctorAgendaComponent,
   DoctorDossierMedicalComponent,
@@ -112,6 +122,7 @@ const doctorPageDeclarations = [
     SimplebarAngularModule,
     SlickCarouselModule,
     LightboxModule,
+    CommonComponentsDashModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,0 +1,87 @@
+.doctor-shell {
+  .doctor-shell__title {
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+  }
+
+  .doctor-shell__metric-card {
+    border-radius: 0.5rem;
+  }
+
+  .card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04);
+  }
+
+  .btn {
+    border-radius: 0.35rem;
+    font-size: 0.76rem;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 520px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.55rem 0.45rem;
+    border-bottom: 1px solid #f1f5f9;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  .table th {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .list-group-item {
+    border-color: #eef2ff;
+    border-radius: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-control,
+  .form-select {
+    border-color: #dbe3ef;
+    border-radius: 0.4rem;
+  }
+
+  .doctor-shell__secondary-strip {
+    border: 1px solid #eef2ff;
+    background: #f8fafc;
+    border-radius: 0.4rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .doctor-shell__secondary-item {
+    padding: 0.6rem 0.75rem;
+    border-right: 1px solid #eef2ff;
+  }
+
+  .doctor-shell__secondary-item:last-child {
+    border-right: 0;
+  }
+
+  .doctor-shell__secondary-item h6 {
+    font-size: 0.95rem;
+  }
+
+  .doctor-shell__secondary-item p {
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 992px) {
+    .doctor-shell__secondary-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}

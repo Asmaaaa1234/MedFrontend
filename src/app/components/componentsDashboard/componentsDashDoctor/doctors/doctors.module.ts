@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { createTranslateLoader } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from 'src/app/core/services/language.service';
+import { CommonComponentsDashModule } from '../../commonComponentsDash/common-components-dash.module';
 
 
 
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: '',
     data: { title: 'doctors' },
     children: [
+      {
+        path: '',
+        redirectTo: 'create',
+        pathMatch: 'full',
+      },
       {
         path: 'add',
         component: AddDoctorsComponent,
@@ -92,7 +98,8 @@ const routes: Routes = [
     SlickCarouselModule,
     LightboxModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonComponentsDashModule
   ],
   exports: [RouterModule],
   providers: [LanguageService],

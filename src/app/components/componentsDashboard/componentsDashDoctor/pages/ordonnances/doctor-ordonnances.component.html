@@ -1,1 +1,29 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Prescriptions'"
+  [subtitle]="'Manage and renew active prescriptions with safety checks.'"
+  [secondaryMetrics]="[
+    { label: 'Active prescriptions', value: '66' },
+    { label: 'Renewals today', value: '9' },
+    { label: 'Interaction alerts', value: '2' },
+    { label: 'Expired this week', value: '5' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-light">Create prescription</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body table-responsive">
+      <table class="table align-middle mb-0">
+        <thead><tr><th>Patient</th><th>Medication</th><th>Duration</th><th></th></tr></thead>
+        <tbody>
+          <tr *ngFor="let row of prescriptions">
+            <td>{{ row.patient }}</td>
+            <td>{{ row.medication }}</td>
+            <td>{{ row.duration }}</td>
+            <td class="text-end"><button class="btn btn-sm btn-soft-primary">Renew</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-dashboard-shell>

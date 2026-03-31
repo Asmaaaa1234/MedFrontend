@@ -1,1 +1,52 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Patients'"
+  [subtitle]="'Manage patient profiles and quickly access patient records.'"
+  [metrics]="[
+    { label: 'Total Patients', value: '1,248' },
+    { label: 'New This Week', value: '34' },
+    { label: 'Chronic Cases', value: '286' }
+  ]"
+  [secondaryMetrics]="[
+    { label: 'Critical follow-up', value: '14' },
+    { label: 'Next 7 days revisits', value: '41' },
+    { label: 'Teleconsult eligible', value: '76' },
+    { label: 'Missing records', value: '8' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary" (click)="navigateTo('add')">Add patient</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between mb-3">
+        <input class="form-control w-auto" style="min-width: 260px" placeholder="Search by name or ID" [(ngModel)]="search" />
+        <div class="d-flex gap-2">
+          <button class="btn btn-soft-primary" (click)="navigateTo('add')">Add patient</button>
+          <button class="btn btn-soft-secondary" (click)="navigateTo('edit')">Edit patient</button>
+          <button class="btn btn-primary" (click)="navigateTo('create-record')">Create record</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of filteredPatients">
+              <td>{{ p.id }}</td>
+              <td class="fw-semibold">{{ p.name }}</td>
+              <td>{{ p.phone }}</td>
+              <td>{{ p.chronic }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

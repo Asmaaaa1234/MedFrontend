@@ -1,117 +1,232 @@
 .doctor-overview {
-  .doctor-overview__title {
-    letter-spacing: -0.02em;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0.8rem;
+  align-items: start;
+
+  .main-column,
+  .right-column {
+    display: grid;
+    gap: 0.8rem;
   }
 
-  .doctor-stat-card {
-    border-radius: 0.75rem;
+  .card {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04);
+    padding: 0.9rem;
+  }
+
+  .welcome-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .welcome-row h4 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .welcome-row p {
+    margin: 0.2rem 0 0;
+    font-size: 0.83rem;
+    color: #64748b;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .date-chip {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.35rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.75rem;
+    color: #334155;
+    background: #f8fafc;
+  }
+
+  .btn {
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    cursor: pointer;
+    font-size: 0.76rem;
+  }
+
+  .btn.success {
+    background: #0ab39c;
+    color: #fff;
+  }
+
+  .btn.info {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+  }
+
+  .btn.light {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #334155;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .stat-card .stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.2rem;
+  }
+
+  .stat-top span {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.74rem;
+  }
+
+  .stat-top strong {
+    font-size: 0.73rem;
+  }
+
+  .stat-top strong.up {
+    color: #16a34a;
+  }
+
+  .stat-card h3 {
+    margin: 0.2rem 0;
+    font-size: 1.55rem;
+    line-height: 1.1;
+  }
+
+  .stat-card a {
+    margin: 0;
+    font-size: 0.72rem;
+    color: #334155;
+    text-decoration: underline;
   }
 
   .doctor-stat-card--clickable {
     cursor: pointer;
-    transition: box-shadow 0.15s ease;
-
-    &:hover {
-      box-shadow: 0 0.5rem 1rem rgba(15, 34, 58, 0.12) !important;
-    }
-
-    &:focus-visible {
-      outline: 2px solid rgba(44, 123, 229, 0.45);
-      outline-offset: 2px;
-    }
   }
 
-  .doctor-agenda-row--clickable {
+  .two-col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .head h4 {
+    margin: 0;
+    font-size: 0.96rem;
+  }
+
+  .periods {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .periods button {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.42rem;
+    font-size: 0.68rem;
+    background: #fff;
+    color: #64748b;
+  }
+
+  .periods button.active {
+    background: #405189;
+    color: #fff;
+    border-color: #405189;
+  }
+
+  .summary-strip {
+    border: 1px solid #eef2ff;
+    background: #f8fafc;
+    border-radius: 0.4rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 0.7rem;
+    overflow: hidden;
+  }
+
+  .summary-strip div {
+    padding: 0.55rem 0.6rem;
+    border-right: 1px solid #eef2ff;
+  }
+
+  .summary-strip div:last-child {
+    border-right: none;
+  }
+
+  .summary-strip h5 {
+    margin: 0;
+    font-size: 0.94rem;
+  }
+
+  .summary-strip p {
+    margin: 0;
+    font-size: 0.71rem;
+    color: #64748b;
+  }
+
+  .table-wrap {
+    overflow: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.55rem 0.35rem;
+    border-bottom: 1px solid #f1f5f9;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  .table th {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.74rem;
+  }
+
+  .agenda-row {
     cursor: pointer;
-    border-radius: 0.35rem;
-
-    &:focus-visible {
-      outline: 2px solid rgba(44, 123, 229, 0.45);
-      outline-offset: 0;
-    }
   }
 
-  .doctor-agenda-patient-name {
-    color: inherit;
-    max-width: 100%;
+  .patient-link {
+    border: 0;
+    background: transparent;
+    color: #0f172a;
+    font-weight: 600;
+    padding: 0;
   }
 
-  .doctor-recent-row {
-    cursor: pointer;
-
-    &:focus-visible {
-      outline: 2px solid rgba(44, 123, 229, 0.45);
-      outline-offset: 0;
-    }
-  }
-
-  .letter-spacing-sm {
-    letter-spacing: 0.04em;
-  }
-
-  .doctor-stat-icon-wrap {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .doctor-stat-icon-wrap--blue {
-    background-color: rgba(44, 123, 229, 0.12);
-  }
-
-  .doctor-stat-icon-wrap--teal {
-    background-color: rgba(0, 184, 169, 0.12);
-  }
-
-  .doctor-stat-icon-wrap--amber {
-    background-color: rgba(245, 166, 35, 0.15);
-  }
-
-  .doctor-stat-icon-wrap--violet {
-    background-color: rgba(124, 58, 237, 0.12);
-  }
-
-  .doctor-stat-icon {
-    font-size: 1.35rem;
-    line-height: 1;
-  }
-
-  .doctor-stat-icon--blue {
-    color: #2c7be5;
-  }
-
-  .doctor-stat-icon--teal {
-    color: #00b8a9;
-  }
-
-  .doctor-stat-icon--amber {
-    color: #f5a623;
-  }
-
-  .doctor-stat-icon--violet {
-    color: #7c3aed;
-  }
-
-  .doctor-panel-card {
-    border-radius: 0.75rem;
-  }
-
-  .doctor-agenda-list .doctor-agenda-row:last-child {
-    border-bottom: 0 !important;
-  }
-
-  .doctor-agenda-time {
-    min-width: 5.5rem;
-    font-size: 0.8125rem;
-  }
-
-  .fs-13 {
-    font-size: 0.8125rem;
-  }
-
-  .doctor-badge {
-    font-weight: 500;
-    padding: 0.35em 0.65em;
-    border-radius: 2rem;
+  .doctor-badge--confirmed {
+    background-color: rgba(25, 135, 84, 0.12);
+    color: #198754;
   }
 
   .doctor-badge--confirmed {
@@ -129,113 +244,130 @@
     color: #dc3545;
   }
 
-  .doctor-ai-card {
-    background: linear-gradient(135deg, rgba(44, 123, 229, 0.06) 0%, rgba(124, 58, 237, 0.06) 100%);
+  .activity-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
   }
 
-  .doctor-ai-badge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
-    background: rgba(124, 58, 237, 0.15);
-    color: #7c3aed;
+  .activity-list li {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
   }
 
-  .doctor-recent-list .doctor-recent-row:last-child {
-    border-bottom: 0 !important;
+  .activity-list .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: #0ab39c;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
   }
 
-  .doctor-avatar {
-    width: 2.5rem;
-    height: 2.5rem;
+  .activity-list p {
+    margin: 0;
     font-size: 0.8rem;
+    color: #334155;
   }
 
-  .doctor-avatar--blue {
-    background: rgba(44, 123, 229, 0.15);
-    color: #2c7be5;
+  .activity-list small {
+    color: #94a3b8;
+    font-size: 0.72rem;
   }
 
-  .doctor-avatar--teal {
-    background: rgba(0, 184, 169, 0.15);
-    color: #00a896;
+  .category-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.35rem;
   }
 
-  .doctor-avatar--amber {
-    background: rgba(245, 166, 35, 0.18);
-    color: #d97706;
+  .category-list li {
+    font-size: 0.79rem;
+    color: #475569;
+    display: flex;
+    justify-content: space-between;
   }
 
-  .doctor-avatar--rose {
-    background: rgba(236, 72, 153, 0.15);
-    color: #db2777;
+  .review-item {
+    border: 1px dashed #e2e8f0;
+    border-radius: 0.4rem;
+    padding: 0.55rem;
+    margin-bottom: 0.45rem;
+    background: #f8fafc;
+    cursor: pointer;
   }
 
-  /* —— Mobile (< 640px): 1-col stats, stacked panels, touch targets —— */
-  @media (max-width: 639.98px) {
-    .doctor-overview__stat-row .doctor-overview__stat-col {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-
-    .doctor-stat-card__value {
-      font-size: 1.35rem;
-    }
-
-    .doctor-touch-target {
-      min-height: 44px;
-      min-width: 44px;
-    }
-
-    .doctor-overview__agenda-actions {
-      width: 100%;
-
-      .btn {
-        flex: 1 1 auto;
-        justify-content: center;
-      }
-    }
-
-    .doctor-agenda-row--clickable,
-    .doctor-recent-row {
-      min-height: 44px;
-      align-items: center;
-    }
-
-    .doctor-agenda-actions .btn-icon {
-      min-width: 44px;
-      min-height: 44px;
-    }
+  .review-item p {
+    margin: 0;
+    font-size: 0.79rem;
+    color: #475569;
+    font-style: italic;
   }
 
-  /* —— Tablet (640px – 1024px): 2-col stats (via col-sm-6), panels stacked —— */
-  @media (max-width: 1024.98px) {
-    .doctor-overview__agenda-col,
-    .doctor-overview__side-col {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
+  .review-item small {
+    color: #64748b;
+    font-size: 0.73rem;
   }
 
-  /* —— Desktop (> 1024px): 4 stats + agenda | side column —— */
-  @media (min-width: 1025px) {
-    .doctor-touch-target {
-      min-height: unset;
-      min-width: unset;
+  .rating-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.4rem;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+  }
+
+  .star-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 42px;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.74rem;
+    color: #475569;
+  }
+
+  .star-row .bar {
+    height: 6px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+  }
+
+  .star-row .bar i {
+    display: block;
+    height: 100%;
+    background: #22c55e;
+  }
+
+  h6 {
+    margin: 0 0 0.6rem;
+    font-size: 0.85rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+
+    .stats-grid,
+    .summary-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .doctor-overview__main-row {
-      flex-wrap: nowrap;
+    .two-col {
+      grid-template-columns: 1fr;
     }
 
-    .doctor-overview__agenda-col {
-      flex: 0 0 66.666667%;
-      max-width: 66.666667%;
-    }
-
-    .doctor-overview__side-col {
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
+    .welcome-row {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 }

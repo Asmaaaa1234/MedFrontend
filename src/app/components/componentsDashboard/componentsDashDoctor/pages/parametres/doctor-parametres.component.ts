@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './doctor-parametres.component.html',
   standalone: false,
 })
-export class DoctorParametresComponent {}
+export class DoctorParametresComponent {
+  settings = {
+    language: 'fr',
+    darkMode: false,
+    emailNotifications: true,
+    whatsappReminders: false,
+  };
+}

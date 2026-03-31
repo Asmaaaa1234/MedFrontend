@@ -1,1 +1,29 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Medical records'"
+  [subtitle]="'Access patient history, diagnosis and continuity notes.'"
+  [metrics]="[
+    { label: 'Open records', value: '58' },
+    { label: 'Updated today', value: '12' },
+    { label: 'Pending review', value: '4' }
+  ]"
+  [secondaryMetrics]="[
+    { label: 'Shared externally', value: '7' },
+    { label: 'Attachments', value: '93' },
+    { label: 'Critical flags', value: '5' },
+    { label: 'Archived', value: '40' }
+  ]"
+>
+  <div shell-actions>
+    <button class="btn btn-soft-primary">Export summary</button>
+  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="timeline-alt">
+        <div class="mb-3 pb-2 border-bottom" *ngFor="let rec of records">
+          <h6 class="mb-1">{{ rec.date }} - {{ rec.diagnosis }}</h6>
+          <p class="text-muted mb-0">{{ rec.note }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-shell>

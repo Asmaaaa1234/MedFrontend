@@ -1,1 +1,47 @@
-<div class="container-fluid py-4"></div>
+<app-dashboard-shell
+  [title]="'Appointments'"
+  [subtitle]="'Validate, cancel or monitor today appointment flow.'"
+  [metrics]="[
+    { label: 'Today', value: '24' },
+    { label: 'Confirmed', value: '16' },
+    { label: 'Pending', value: '6' }
+  ]"
+  [secondaryMetrics]="[
+    { label: 'Completion rate', value: '88%' },
+    { label: 'Avg wait time', value: '11m' },
+    { label: 'Teleconsult slots', value: '3' },
+    { label: 'No-show', value: '2' }
+  ]"
+>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Type</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of appointments">
+            <td>{{ item.id }}</td>
+            <td>{{ item.patient }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.time }}</td>
+            <td>
+              <app-status-badge [status]="item.status"></app-status-badge>
+            </td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-soft-success me-1" (click)="setStatus(item.id, 'Confirmed')">Confirm</button>
+              <button class="btn btn-sm btn-soft-danger" (click)="setStatus(item.id, 'Cancelled')">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-dashboard-shell>

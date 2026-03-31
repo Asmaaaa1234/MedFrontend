@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './doctor-messagerie.component.html',
   standalone: false,
 })
-export class DoctorMessagerieComponent {}
+export class DoctorMessagerieComponent {
+  threads = [
+    { from: 'Patient John Smith', subject: 'Medication side effects', unread: true },
+    { from: 'Secretary', subject: 'Agenda adjustment', unread: false },
+  ];
+}
